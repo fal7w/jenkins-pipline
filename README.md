@@ -1,23 +1,6 @@
 # Jenkins Pipeline
 This project includes a Jenkins pipeline defined in the Jenkinsfile. The pipeline performs the following steps:
 
-## Project Structure
-
-my-nodejs-project/
-├── tests/
-
-│   └── server.test.js
-
-├── .gitignore
-
-├── Jenkinsfile
-
-├── README.md
-
-├── package.json
-
-├── server.js
-
 ## Setting Up Jenkins
 
 To run this project using Jenkins, follow these steps:
@@ -47,3 +30,21 @@ After install `Jenkins` do this :
 ### 4. Save and Build:
    - Save the job configuration.
    - Click "Build Now" to start the pipeline.
+
+
+## Project Structure
+
+my-nodejs-project/
+├── tests/
+
+│   └── server.test.js
+
+├── .gitignore
+
+├── Jenkinsfile
+
+├── README.md
+
+├── package.json
+
+├── server.js
