@@ -12,49 +12,54 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/fal7w/jenkins-pipline.git'
             }
         }
-        stage('Check Node.js and npm Installation') {
+        stage('Install Node.js and npm') {
             steps {
-                // Check if Node.js and npm are installed and install them if not
-                script {
-                    def nodeInstalled = sh(script: 'command -v node', returnStatus: true) == 0
-                    def npmInstalled = sh(script: 'command -v npm', returnStatus: true) == 0
-
-                    if (!nodeInstalled || !npmInstalled) {
-                        // Install Node.js and npm if not installed
-                        sh '''
-                            curl -sL https://deb.nodesource.com/setup_$NODE_VERSION | bash -
-                            apt-get install -y nodejs
-                        '''
-                    } else {
-                        // Print versions if installed
-                        sh 'node -v'
-                        sh 'npm -v'
-                    }
-                }
+                // Install Node.js and npm if not installed
+                sh '''
+                    if ! command -v node > /dev/null 2>&1; then
+                        curl -sL https://deb.nodesource.com/setup_$NODE_VERSION | bash -
+                        apt-get install -y nodejs
+                    fi
+                    export PATH=$PATH:/usr/local/bin
+                    node -v
+                    npm -v
+                '''
             }
         }
         stage('Install Dependencies') {
             steps {
                 // Install project dependencies
-                sh 'npm install'
+                sh '''
+                    export PATH=$PATH:/usr/local/bin
+                    npm install
+                '''
             }
         }
         stage('Build') {
             steps {
                 // Run build commands (if any)
-                echo 'Building the project...'
+                sh '''
+                    export PATH=$PATH:/usr/local/bin
+                    echo "Building the project..."
+                '''
             }
         }
         stage('Test') {
             steps {
                 // Run tests
-                sh 'npm test'
+                sh '''
+                    export PATH=$PATH:/usr/local/bin
+                    npm test
+                '''
             }
         }
         stage('Deploy') {
             steps {
                 // Deploy the application (if any)
-                echo 'Deploying the application...'
+                sh '''
+                    export PATH=$PATH:/usr/local/bin
+                    echo "Deploying the application..."
+                '''
             }
         }
     }
@@ -62,15 +67,24 @@ pipeline {
     post {
         always {
             // Clean up actions
-            echo 'Cleaning up...'
+            sh '''
+                export PATH=$PATH:/usr/local/bin
+                echo "Cleaning up..."
+            '''
         }
         success {
             // Actions on success
-            echo 'Pipeline completed successfully!'
+            sh '''
+                export PATH=$PATH:/usr/local/bin
+                echo "Pipeline completed successfully!"
+            '''
         }
         failure {
             // Actions on failure
-            echo 'Pipeline failed!'
+            sh '''
+                export PATH=$PATH:/usr/local/bin
+                echo "Pipeline failed!"
+            '''
         }
     }
 }
