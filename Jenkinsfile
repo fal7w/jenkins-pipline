@@ -20,8 +20,13 @@ pipeline {
                         curl -sL https://deb.nodesource.com/setup_$NODE_VERSION | bash -
                         apt-get install -y nodejs
                     fi
-                    export PATH=$PATH:/usr/local/bin
+                    # Ensure npm is installed and accessible
+                    if ! command -v npm > /dev/null 2>&1; then
+                        apt-get install -y npm
+                    fi
+                    echo "Node version:"
                     node -v
+                    echo "NPM version:"
                     npm -v
                 '''
             }
@@ -29,37 +34,25 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 // Install project dependencies
-                sh '''
-                    export PATH=$PATH:/usr/local/bin
-                    npm install
-                '''
+                sh 'npm install'
             }
         }
         stage('Build') {
             steps {
                 // Run build commands (if any)
-                sh '''
-                    export PATH=$PATH:/usr/local/bin
-                    echo "Building the project..."
-                '''
+                echo 'Building the project...'
             }
         }
         stage('Test') {
             steps {
                 // Run tests
-                sh '''
-                    export PATH=$PATH:/usr/local/bin
-                    npm test
-                '''
+                sh 'npm test'
             }
         }
         stage('Deploy') {
             steps {
                 // Deploy the application (if any)
-                sh '''
-                    export PATH=$PATH:/usr/local/bin
-                    echo "Deploying the application..."
-                '''
+                echo 'Deploying the application...'
             }
         }
     }
@@ -67,24 +60,15 @@ pipeline {
     post {
         always {
             // Clean up actions
-            sh '''
-                export PATH=$PATH:/usr/local/bin
-                echo "Cleaning up..."
-            '''
+            echo 'Cleaning up...'
         }
         success {
             // Actions on success
-            sh '''
-                export PATH=$PATH:/usr/local/bin
-                echo "Pipeline completed successfully!"
-            '''
+            echo 'Pipeline completed successfully!'
         }
         failure {
             // Actions on failure
-            sh '''
-                export PATH=$PATH:/usr/local/bin
-                echo "Pipeline failed!"
-            '''
+            echo 'Pipeline failed!'
         }
     }
 }
