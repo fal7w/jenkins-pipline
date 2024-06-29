@@ -33,26 +33,31 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                // Install project dependencies
-                sh 'npm install'
+                // Change to the directory where package.json is located
+                dir('my-nodejs-project') {  // Change this if your project directory name is different
+                    sh 'npm install'
+                }
             }
         }
         stage('Build') {
             steps {
-                // Run build commands (if any)
-                echo 'Building the project...'
+                dir('my-nodejs-project') {  // Change this if your project directory name is different
+                    sh 'echo "Building the project..."'
+                }
             }
         }
         stage('Test') {
             steps {
-                // Run tests
-                sh 'npm test'
+                dir('my-nodejs-project') {  // Change this if your project directory name is different
+                    sh 'npm test'
+                }
             }
         }
         stage('Deploy') {
             steps {
-                // Deploy the application (if any)
-                echo 'Deploying the application...'
+                dir('my-nodejs-project') {  // Change this if your project directory name is different
+                    sh 'echo "Deploying the application..."'
+                }
             }
         }
     }
