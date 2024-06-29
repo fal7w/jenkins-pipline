@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Check Node.js and npm Installation') {
             steps {
-                // Check if Node.js and npm are installed
+                // Check if Node.js and npm are installed and install them if not
                 script {
                     def nodeInstalled = sh(script: 'command -v node', returnStatus: true) == 0
                     def npmInstalled = sh(script: 'command -v npm', returnStatus: true) == 0
