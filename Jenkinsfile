@@ -34,30 +34,25 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 // Install project dependencies
-                dir('my-nodejs-project') { // Change this if your project directory name is different
-                    sh 'npm install'
-                }
+                sh 'npm install'
             }
         }
         stage('Build') {
             steps {
-                dir('my-nodejs-project') { // Change this if your project directory name is different
-                    sh 'echo "Building the project..."'
-                }
+                // Run build commands (if any)
+                echo 'Building the project...'
             }
         }
         stage('Test') {
             steps {
-                dir('my-nodejs-project') { // Change this if your project directory name is different
-                    sh 'npm test'
-                }
+                // Run tests
+                sh 'npm test'
             }
         }
         stage('Deploy') {
             steps {
-                dir('my-nodejs-project') { // Change this if your project directory name is different
-                    sh 'echo "Deploying the application..."'
-                }
+                // Deploy the application (if any)
+                echo 'Deploying the application...'
             }
         }
     }
