@@ -5,11 +5,17 @@ This project includes a Jenkins pipeline defined in the Jenkinsfile. The pipelin
 
 my-nodejs-project/
 ├── tests/
+
 │   └── server.test.js
+
 ├── .gitignore
+
 ├── Jenkinsfile
+
 ├── README.md
+
 ├── package.json
+
 ├── server.js
 
 ## Setting Up Jenkins
