@@ -1,7 +1,7 @@
 {
   "name": "my-nodejs-project",
   "version": "1.0.0",
-  "description": "A simple Node.js project with a Jenkins pipeline",
+  "description": "A simple Node.js project with Express",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
