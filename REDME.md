@@ -36,13 +36,14 @@ After install `Jenkins` do this :
       - Enter a name for your job and select "Pipeline", then click "OK".
 
 ### 3. Configure the Pipeline:
-      - In the job configuration page, go to the "Pipeline" section.
-      - Select "Pipeline script from SCM".
-      - Choose "Git" as the SCM.
-      - Enter the repository URL: `https://github.com/fal7w/jenkins-pipline.git`.
-      - Set the branch to build (e.g., `main`).
-      - Ensure the Jenkinsfile path is `Jenkinsfile`.
+
+   - In the job configuration page, go to the "Pipeline" section.
+   - Select "Pipeline script from SCM".
+   - Choose "Git" as the SCM.
+   - Enter the repository URL: `https://github.com/fal7w/jenkins-pipline.git`.
+   - Set the branch to build (e.g., `main`).
+   - Ensure the Jenkinsfile path is `Jenkinsfile`.
 
 ### 4. Save and Build:
-      - Save the job configuration.
-      - Click "Build Now" to start the pipeline.
+   - Save the job configuration.
+   - Click "Build Now" to start the pipeline.
