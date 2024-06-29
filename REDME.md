@@ -21,7 +21,7 @@ my-nodejs-project/
 ## Setting Up Jenkins
 
 To run this project using Jenkins, follow these steps:
-1. Install Jenkins using docker compose : 
+1. ### Install Jenkins using docker compose : 
 Clone this repo :
 
 ``` sh
@@ -31,18 +31,18 @@ cd automation/docker-compose/Jenkins/
 
 2. Create a New Job:
 After install `Jenkins` do this :
-  - Open Jenkins in your web browser.
-  - Click on "New Item".
-  - Enter a name for your job and select "Pipeline", then click "OK".
+      - Open Jenkins in your web browser.
+      - Click on "New Item".
+      - Enter a name for your job and select "Pipeline", then click "OK".
 
-3. Configure the Pipeline:
-  - In the job configuration page, go to the "Pipeline" section.
-  - Select "Pipeline script from SCM".
-  - Choose "Git" as the SCM.
-  - Enter the repository URL: `https://github.com/fal7w/jenkins-pipline.git`.
-  - Set the branch to build (e.g., `main`).
-  - Ensure the Jenkinsfile path is `Jenkinsfile`.
+3. ### Configure the Pipeline:
+      - In the job configuration page, go to the "Pipeline" section.
+      - Select "Pipeline script from SCM".
+      - Choose "Git" as the SCM.
+      - Enter the repository URL: `https://github.com/fal7w/jenkins-pipline.git`.
+      - Set the branch to build (e.g., `main`).
+      - Ensure the Jenkinsfile path is `Jenkinsfile`.
 
-4. Save and Build:
-  - Save the job configuration.
-  - Click "Build Now" to start the pipeline.
+4. ### Save and Build:
+      - Save the job configuration.
+      - Click "Build Now" to start the pipeline.
