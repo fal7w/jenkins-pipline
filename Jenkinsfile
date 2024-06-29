@@ -12,11 +12,25 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/fal7w/jenkins-pipline.git'
             }
         }
-        stage('Install Node.js') {
+        stage('Check Node.js and npm Installation') {
             steps {
-                // Install Node.js version specified
-                sh 'curl -sL https://deb.nodesource.com/setup_$NODE_VERSION | bash -'
-                sh 'apt-get install -y nodejs'
+                // Check if Node.js and npm are installed
+                script {
+                    def nodeInstalled = sh(script: 'command -v node', returnStatus: true) == 0
+                    def npmInstalled = sh(script: 'command -v npm', returnStatus: true) == 0
+
+                    if (!nodeInstalled || !npmInstalled) {
+                        // Install Node.js and npm if not installed
+                        sh '''
+                            curl -sL https://deb.nodesource.com/setup_$NODE_VERSION | bash -
+                            apt-get install -y nodejs
+                        '''
+                    } else {
+                        // Print versions if installed
+                        sh 'node -v'
+                        sh 'npm -v'
+                    }
+                }
             }
         }
         stage('Install Dependencies') {
